@@ -320,6 +320,7 @@ class Server:
 
         num_blocks = min(num_blocks, self.block_config.num_hidden_layers)
         logger.info(
+            f"Total Memory is {total_memory}, num_devices is {num_devices}, tensor_parallel_devices is {self.tensor_parallel_devices}."
             f"Server will fill your GPU memory with {num_blocks} transformer blocks. "
             f"If you want to leave some free GPU memory, please specify a lesser --num_blocks manually"
         )
