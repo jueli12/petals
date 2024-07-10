@@ -319,8 +319,13 @@ class Server:
         assert num_blocks >= 1, "Your GPU does not have enough memory to serve at least one block"
 
         num_blocks = min(num_blocks, self.block_config.num_hidden_layers)
+
         logger.info(
-            f"Total Memory is {total_memory}, num_devices is {num_devices}, tensor_parallel_devices is {self.tensor_parallel_devices}."
+            f"total memory is {total_memory / gib}, num_hidden_layers is {self.block_config.num_hidden_layers},"
+            f"num_devices is {num_devices}, tensor_parallel_devices is {self.tensor_parallel_devices},"
+            f"autograd_memory is {autograd_memory / gib}, total_memory_per_block is {total_memory_per_block}"
+        )
+        logger.info(
             f"Server will fill your GPU memory with {num_blocks} transformer blocks. "
             f"If you want to leave some free GPU memory, please specify a lesser --num_blocks manually"
         )
